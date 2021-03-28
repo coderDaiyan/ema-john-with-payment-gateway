@@ -1,0 +1,51 @@
+.product {
+  display: flex;
+  border-bottom: 2px solid lightgrey;
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+.product h4 {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  color: purple;
+  font-weight: 500;
+}
+.product a:hover {
+  color: purple;
+}
+.product h4,
+p {
+  margin-left: 40px;
+}
+button {
+  margin-left: 40px;
+}
+.product small {
+  font-size: 15px;
+}
+.product img {
+  border: 8px solid red;
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.1s ease;
+}
+.product img:hover {
+  transform: scale(1.1, 1.1);
+  border: 10px solid orange;
+  border-radius: 20px;
+}
+.main-button {
+  background: #f0c14b;
+  border: 2px solid;
+  border-color: #a88734 #9c7e31 #846a29;
+  border-radius: 0.9em;
+  width: 150px;
+  padding: 10px;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  outline: none;
+}
+.main-button:hover {
+  background: #d6ac42;
+}
