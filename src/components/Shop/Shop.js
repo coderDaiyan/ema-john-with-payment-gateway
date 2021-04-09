@@ -1,23 +1,24 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import "./Shop.css";
-import Product from "../Product/Product";
-import Cart from "../Cart/Cart";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   addToDatabaseCart,
   getDatabaseCart,
 } from "../../utilities/databaseManager";
-import { Link } from "react-router-dom";
+import Cart from "../Cart/Cart";
+import Product from "../Product/Product";
+import "./Shop.css";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("https://afternoon-shore-48416.herokuapp.com/products")
+    // fetch("https://afternoon-shore-48416.herokuapp.com/products")
+    fetch(`http://localhost:5000/products?search=${search}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, []);
+  }, [search]);
 
   useEffect(() => {
     const savedCart = getDatabaseCart();
@@ -32,6 +33,10 @@ const Shop = () => {
       .then((res) => res.json())
       .then((data) => setCart(data));
   }, []);
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
 
   const handleAddProduct = (product) => {
     const toBeAddedKey = product.key;
@@ -54,6 +59,14 @@ const Shop = () => {
   return (
     <div className="twin-container">
       <div className="product-container">
+        <div className="input-group mt-3 mb-5">
+          <input
+            onBlur={handleSearch}
+            type="text"
+            placeholder="Search here"
+            className="form-control"
+          />
+        </div>
         {products.map((pd) => (
           <Product
             key={pd.key}
